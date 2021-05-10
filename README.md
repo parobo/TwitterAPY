@@ -6,20 +6,24 @@ Currently there is no simple way to install the wrapper. Simply clone the git an
 
 # Working with the wrapper
 Start by initializing the API:
-```api = TwitterAPY.api('YOUR_BEARER_TOKEN')
+```
+api = TwitterAPY.api('YOUR_BEARER_TOKEN')
 ```
 The wrapper then offers currently three functions.
 Full Archive Search:
-```pages = api.full_archive_search(query,max_pages=False)
+```
+pages = api.full_archive_search(query,max_pages=False)
 ```
 max_pages can take any int value and will only collect this many pages from twitter.
 query is a standard twitter api query, see e.g. https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query. the query parameter also allows other information to be passed such as max_results. In this case it should be a dictionary containing the query parameter.
 The users a user is following:
-```pages = user_following(user_id,query,max_pages=False)
+```
+pages = user_following(user_id,query,max_pages=False)
 ```
 here user_id is the id of the user for which you want to collect the accounts she follows.
 The users that are following a user:
-```	pages = user_followers(user_id,query,max_pages=False)
+```
+pages = user_followers(user_id,query,max_pages=False)
 ```
 each of these functions returns a list of page objects. Each object has properties that return the tweets, users, etc. that are saved on a page.
 
