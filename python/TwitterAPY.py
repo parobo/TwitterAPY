@@ -1,5 +1,5 @@
 import requests
-from requests.exceptions import ChunkedEncodingError, ConnectionError, ConnectionResetError
+from requests.exceptions import ChunkedEncodingError, ConnectionError
 from time import time, sleep
 
 class page:
