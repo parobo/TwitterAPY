@@ -308,13 +308,13 @@ class api:
             sleep(time_until_ratelimit)
             return False
         if response.status_code >= 500:
-            print('Error on Twitter side. Sleeping for {} and retrying again.'.format(60))
-            sleep(60)
+            print('Error on Twitter side. Sleeping for {} and retrying again.'.format(30))
+            sleep(30)
             return False
     
     def __handle_errors__(self,error,endpoint,headers,params):
-        print("An unexpected error occured: {}./n Sleeping 60 seconds and retrying once.".format(str(type(error))))
-        sleep(60)
+        print("An unexpected error occured: {}./n Sleeping 10 seconds and retrying once.".format(str(type(error))))
+        sleep(10)
         return requests.request("GET", endpoint, headers=headers, params=params)
 
 
@@ -327,8 +327,10 @@ class api:
         success = False
         while not success:
             try:
+                sleep(0.01)
                 response = requests.request("GET", endpoint, headers=headers, params=params)
             except (ChunkedEncodingError,ConnectionError) as e:
+                sleep(0.01)
                 response = self.__handle_errors__(e,endpoint,headers,params)
             success = self.__handle_status__(response)
             if success:
@@ -340,8 +342,10 @@ class api:
                     while not success_subsequent:
                         params['next_token'] = p.next_token
                         try:
+                            sleep(0.01)
                             response = requests.request("GET", endpoint, headers=headers, params=params)
                         except (ChunkedEncodingError,ConnectionError) as e:
+                            sleep(0.01)
                             response = self.__handle_errors__(e,endpoint,headers,params)
                         success_subsequent = self.__handle_status__(response)
                         if success_subsequent:
@@ -358,8 +362,10 @@ class api:
         success = False
         while not success:
             try:
+                sleep(0.01)
                 response = requests.request("GET", endpoint, headers=headers, params=params)
             except (ChunkedEncodingError,ConnectionError) as e:
+                sleep(0.01)
                 response = self.__handle_errors__(e,endpoint,headers,params)
             success = self.__handle_status__(response)
             if success:
@@ -371,8 +377,10 @@ class api:
                     while not success_subsequent:
                         params['pagination_token'] = p.next_token
                         try:
+                            sleep(0.01)
                             response = requests.request("GET", endpoint, headers=headers, params=params)
                         except (ChunkedEncodingError,ConnectionError) as e:
+                            sleep(0.01)
                             response = self.__handle_errors__(e,endpoint,headers,params)
                         success_subsequent = self.__handle_status__(response)
                         if success_subsequent:
@@ -390,8 +398,10 @@ class api:
 
         while not success:
             try:
+                sleep(0.01)
                 response = requests.request("GET", endpoint, headers=headers, params=params)
             except (ChunkedEncodingError,ConnectionError) as e:
+                sleep(0.01)
                 response = self.__handle_errors__(e,endpoint,headers,params)
             success = self.__handle_status__(response)
             if success:
@@ -403,8 +413,10 @@ class api:
                     while not success_subsequent:
                         params['pagination_token'] = p.next_token
                         try:
+                            sleep(0.01)
                             response = requests.request("GET", endpoint, headers=headers, params=params)
                         except (ChunkedEncodingError,ConnectionError) as e:
+                            sleep(0.01)
                             response = self.__handle_errors__(e,endpoint,headers,params)
                         success_subsequent = self.__handle_status__(response)
                         if success_subsequent:
