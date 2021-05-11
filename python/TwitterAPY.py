@@ -1,5 +1,5 @@
 import requests
-from requests.exceptions import ChunkedEncodingError, ConnectionError
+from requests.exceptions import ChunkedEncodingError, ConnectionError, ConnectionResetError
 from time import time, sleep
 
 class page:
@@ -329,7 +329,7 @@ class api:
             try:
                 sleep(0.01)
                 response = requests.request("GET", endpoint, headers=headers, params=params)
-            except (ChunkedEncodingError,ConnectionError) as e:
+            except (ChunkedEncodingError,ConnectionError,ConnectionResetError) as e:
                 sleep(0.01)
                 response = self.__handle_errors__(e,endpoint,headers,params)
             success = self.__handle_status__(response)
@@ -344,7 +344,7 @@ class api:
                         try:
                             sleep(0.01)
                             response = requests.request("GET", endpoint, headers=headers, params=params)
-                        except (ChunkedEncodingError,ConnectionError) as e:
+                        except (ChunkedEncodingError,ConnectionError,ConnectionResetError) as e:
                             sleep(0.01)
                             response = self.__handle_errors__(e,endpoint,headers,params)
                         success_subsequent = self.__handle_status__(response)
@@ -364,7 +364,7 @@ class api:
             try:
                 sleep(0.01)
                 response = requests.request("GET", endpoint, headers=headers, params=params)
-            except (ChunkedEncodingError,ConnectionError) as e:
+            except (ChunkedEncodingError,ConnectionError,ConnectionResetError) as e:
                 sleep(0.01)
                 response = self.__handle_errors__(e,endpoint,headers,params)
             success = self.__handle_status__(response)
@@ -379,7 +379,7 @@ class api:
                         try:
                             sleep(0.01)
                             response = requests.request("GET", endpoint, headers=headers, params=params)
-                        except (ChunkedEncodingError,ConnectionError) as e:
+                        except (ChunkedEncodingError,ConnectionError,ConnectionResetError) as e:
                             sleep(0.01)
                             response = self.__handle_errors__(e,endpoint,headers,params)
                         success_subsequent = self.__handle_status__(response)
@@ -400,7 +400,7 @@ class api:
             try:
                 sleep(0.01)
                 response = requests.request("GET", endpoint, headers=headers, params=params)
-            except (ChunkedEncodingError,ConnectionError) as e:
+            except (ChunkedEncodingError,ConnectionError,ConnectionResetError) as e:
                 sleep(0.01)
                 response = self.__handle_errors__(e,endpoint,headers,params)
             success = self.__handle_status__(response)
@@ -415,7 +415,7 @@ class api:
                         try:
                             sleep(0.01)
                             response = requests.request("GET", endpoint, headers=headers, params=params)
-                        except (ChunkedEncodingError,ConnectionError) as e:
+                        except (ChunkedEncodingError,ConnectionError,ConnectionResetError) as e:
                             sleep(0.01)
                             response = self.__handle_errors__(e,endpoint,headers,params)
                         success_subsequent = self.__handle_status__(response)
